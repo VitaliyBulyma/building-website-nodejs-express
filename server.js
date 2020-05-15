@@ -1,9 +1,15 @@
 const express =require('express');
- const app = new express();
+const path = require('path'); 
+const app = new express();
  const port = 3000;
+ app.use(express.static(path.join(__dirname,'./static')));
  app.get('/', (request, response) =>{
-    response.send('Hello from Espress');
+    response.sendFile(path.join(__dirname,'./static/index.html'));
  });
+ app.get('/speaker', (request, response) =>{
+    response.sendFile(path.join(__dirname,'./static/speakers.html'));
+ });
+
  app.listen(port,()=>{
     console.log(`Express is listening on port ${port}`);
  });
